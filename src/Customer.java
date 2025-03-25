@@ -203,7 +203,7 @@ public class Customer {
         this.numOfTicketsBookedByUser.set(index, newNumOfTickets);
     }
 
-    
+
     public List<Flight> getFlightsRegisteredByUser() {
         return flightsRegisteredByUser;
     }
