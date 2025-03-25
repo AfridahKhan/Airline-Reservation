@@ -78,7 +78,7 @@ public class RandomGenerator {
         return randomAlphabets.toString();
     }
 
-    
+
     public void setRandomNum(String randomNum) {
         this.randomNum = randomNum;
     }
