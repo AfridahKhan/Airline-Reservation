@@ -84,32 +84,10 @@ public class Flight  {
 
 
     public String calculateFlightTime(double distanceBetweenTheCities) {
-        double groundSpeed = 450;
-        double time = (distanceBetweenTheCities / groundSpeed);
-        String timeInString = String.format("%.4s", time);
-        String[] timeArray = timeInString.replace('.', ':').split(":");
-        int hours = Integer.parseInt(timeArray[0]);
-        int minutes = Integer.parseInt(timeArray[1]);
-        int modulus = minutes % 5;
-        // Changing flight time to make minutes near/divisible to 5.
-        if (modulus < 3) {
-            minutes -= modulus;
-        } else {
-            minutes += 5 - modulus;
-        }
-        if (minutes >= 60) {
-            minutes -= 60;
-            hours++;
-        }
-        if (hours <= 9 && Integer.toString(minutes).length() == 1) {
-            return String.format("0%s:%s0", hours, minutes);
-        } else if (hours <= 9 && Integer.toString(minutes).length() > 1) {
-            return String.format("0%s:%s", hours, minutes);
-        } else if (hours > 9 && Integer.toString(minutes).length() == 1) {
-            return String.format("%s:%s0", hours, minutes);
-        } else {
-            return String.format("%s:%s", hours, minutes);
-        }
+        double time = distanceInMiles / 450;
+        int hours = (int) time;
+        int minutes = (int) ((time - hours) * 60);
+        return String.format("%02d:%02d", hours, minutes);
     }
 
     public String fetchArrivalTime() {
@@ -149,20 +127,7 @@ public class Flight  {
         displayFlightSchedule();
     }
 
-
-    public String[] calculateDistance(double lat1, double lon1, double lat2, double lon2) {
-        double theta = lon1 - lon2;
-        double distance = Math.sin(degreeToRadian(lat1)) * Math.sin(degreeToRadian(lat2)) + Math.cos(degreeToRadian(lat1)) * Math.cos(degreeToRadian(lat2)) * Math.cos(degreeToRadian(theta));
-        distance = Math.acos(distance);
-        distance = radianToDegree(distance);
-        distance = distance * 60 * 1.1515;
-        /* On the Zero-Index, distance will be in Miles, on 1st-index, distance will be in KM and on the 2nd index distance will be in KNOTS*/
-        String[] distanceString = new String[3];
-        distanceString[0] = String.format("%.2f", distance * 0.8684);
-        distanceString[1] = String.format("%.2f", distance * 1.609344);
-        distanceString[2] = Double.toString(Math.round(distance * 100.0) / 100.0);
-        return distanceString;
-    }
+    
 
     public void displayFlightSchedule() {
 
