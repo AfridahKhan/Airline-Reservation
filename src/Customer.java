@@ -88,7 +88,18 @@ public class Customer {
         }
     }
 
-    
+
+    public static boolean isUniqueData(String emailID) {
+        boolean isUnique = false;
+        for (Customer c : customerCollection) {
+            if (emailID.equals(c.getEmail())) {
+                isUnique = true;
+                break;
+            }
+        }
+        return isUnique;
+    }
+
     public void editUserInfo(String ID) {
         boolean isFound = false;
         Scanner read = new Scanner(System.in);

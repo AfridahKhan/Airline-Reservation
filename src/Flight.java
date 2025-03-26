@@ -52,7 +52,11 @@ public class Flight extends FlightDistance {
         RandomGenerator r1 = new RandomGenerator();
         for (int i = 0; i < numOfFlights; i++) {
             String[][] chosenDestinations = r1.randomDestinations();
-            String[] distanceBetweenTheCities = calculateDistance(Double.parseDouble(chosenDestinations[0][1]), Double.parseDouble(chosenDestinations[0][2]), Double.parseDouble(chosenDestinations[1][1]), Double.parseDouble(chosenDestinations[1][2]));
+            String[] distanceBetweenTheCities = calculateDistance(
+                    Double.parseDouble(chosenDestinations[0][1]),
+                    Double.parseDouble(chosenDestinations[0][2]),
+                    Double.parseDouble(chosenDestinations[1][1]),
+                    Double.parseDouble(chosenDestinations[1][2]));
             String flightSchedule = createNewFlightsAndTime();
             String flightNumber = r1.randomFlightNumbGen(2, 1).toUpperCase();
             int numOfSeatsInTheFlight = r1.randomNumOfSeats();
@@ -189,7 +193,7 @@ public class Flight extends FlightDistance {
         }
     }
 
-    @Override
+
     public String toString(int i) {
         return String.format("| %-5d| %-41s | %-9s | \t%-9s | %-21s | %-22s | %-10s  |   %-6sHrs |  %-4s  |  %-8s / %-11s|", i, flightSchedule, flightNumber, numOfSeatsInTheFlight, fromWhichCity, toWhichCity, fetchArrivalTime(), flightTime, gate, distanceInMiles, distanceInKm);
     }
