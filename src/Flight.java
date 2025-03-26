@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class Flight extends FlightDistance {
+public class Flight  {
 
 
     private final String flightSchedule;
@@ -154,7 +154,7 @@ public class Flight extends FlightDistance {
         displayFlightSchedule();
     }
 
-    @Override
+
     public String[] calculateDistance(double lat1, double lon1, double lat2, double lon2) {
         double theta = lon1 - lon2;
         double distance = Math.sin(degreeToRadian(lat1)) * Math.sin(degreeToRadian(lat2)) + Math.cos(degreeToRadian(lat1)) * Math.cos(degreeToRadian(lat2)) * Math.cos(degreeToRadian(theta));
@@ -167,14 +167,6 @@ public class Flight extends FlightDistance {
         distanceString[1] = String.format("%.2f", distance * 1.609344);
         distanceString[2] = Double.toString(Math.round(distance * 100.0) / 100.0);
         return distanceString;
-    }
-
-    private double degreeToRadian(double deg) {
-        return (deg * Math.PI / 180.0);
-    }
-
-    private double radianToDegree(double rad) {
-        return (rad * 180.0 / Math.PI);
     }
 
     public void displayFlightSchedule() {
